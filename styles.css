@@ -1,3 +1,9 @@
 body {
     background-color: rgb(17, 16, 16);
 }
+
+.score {
+    background-color: rgb(216, 118, 118);
+    height: 50px;
+    width: 200px;    
+}

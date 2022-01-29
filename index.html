@@ -3,16 +3,49 @@
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="styles.css">
-        <title>RCS game!</title>
+        <title>RPS</title>
+        <!--Fonts-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
+        <!--Favicon here-->
+        <link rel="icon" type="image/x-icon" href="rock-paper-scissors.png
+        ">
     </head>
 
     <body>
-        <button id="rck">Rock</button>
-        <button id="paper">Paper</button>
-        <button id="scsrs">Scissors</button>
-        <div class="score">
-            <p></p>
+        <h2>Rock, paper, Scissors!</h2>
+
+        <div class="choice-holder">
+            <div class="playerchoice">
+                <div><img id="devil" src="devil.png" alt=""></div>
+                
+                <span id="playerscoreh"></span>
+            </div>
+
+            <div id="score-holder">
+                <h3>Score</h3>
+                <div class="score"></div>
+                <div id="restart">
+                    <button id="reset">Restart</button>
+                </div>
+            </div>
+
+            <div class="pcchoice">
+                <div><img id="pc" src="evil.png" alt=""></div>
+                <span id="pcscoreh"></span>
+            </div>
         </div>
+
+        <div class="buttons">
+            <button class= "rps" id="rock">Rock</button>
+            <button class= "rps" id="paper">Paper</button>
+            <button class= "rps" id="scissors">Scissors</button>
+        </div>
+
+        <footer>
+            <h4>Crafted by <a href="https://github.com/heimesh">heimesh <3</a></h4>
+        </footer>
 
         <script src="javascript.js"></script>
     </body>

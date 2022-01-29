@@ -1,4 +1,33 @@
-/*This function generates a number between 1-3 */
+const rockbtn = document.querySelector("#rock");
+const paperbtn = document.querySelector("#paper");
+const scissorsbtn = document.querySelector("#scissors");
+const roundresult = document.querySelector(".score");
+const compscoreh = document.querySelector("#pcscoreh");
+const userscoreh = document.querySelector("#playerscoreh");
+const resetbtn = document.querySelector("#reset");
+
+resetbtn.addEventListener('click', () => location.reload());
+
+let playerscore = 0;
+let pcscore = 0;
+
+/*Specific functions to make choice for the user. */
+function rock(){
+    playRound("rock", computerPlay())
+};
+function paper(){
+    playRound("paper", computerPlay())
+};
+function scissors(){
+    playRound("scissors", computerPlay())
+};
+
+rockbtn.addEventListener("click", rock);
+paperbtn.addEventListener("click",paper);
+scissorsbtn.addEventListener("click", scissors);
+    
+
+/*This function generates a choice between 1-3 */
 function computerPlay(){
     let x = Math.floor((Math.random() * 3) +1)
     let computerChoice
@@ -18,80 +47,51 @@ function computerPlay(){
 }
 
 
-let playerscore = 0;
-let pcscore = 0;
-let winner = "";
-
-/*Func determins who wins and adds scores. */
+/*Function determins who wins, adds and displays scores. */
 function playRound(playerSelection,computerSelection){
 
     playerSelection = playerSelection.toLowerCase();
     computerSelection = computerSelection.toLowerCase();
 
     if(computerSelection == playerSelection){
-         winner = "It's a tie!";
+         roundresult.textContent = "It's a tie!";
     }
     else if((computerSelection == "rock" && playerSelection == "paper") || (computerSelection == "paper" && playerSelection == "scissors") || (computerSelection == "scissors" && playerSelection == "rock")){
-         winner = "Player wins";
-        playerscore++;
+         userscoreh.textContent = ++playerscore;
+         roundresult.textContent = `You win! ${playerSelection} beats ${computerSelection}`;
+
     }
     else if((computerSelection == "rock" && playerSelection == "scissors") || (computerSelection == "paper" && playerSelection == "rock") || (computerSelection == "scissors" && playerSelection == "paper")){
-         winner = "Computer Wins!";
-        pcscore++;
+         compscoreh.textContent = ++pcscore;
+         roundresult.textContent = `You lose! ${computerSelection} beats ${playerSelection}`;
     }
+ checkWinner();
 };
 
 
-
-const rockbtn = document.querySelector("#rck");
-const paperbtn = document.querySelector("#paper");
-const scsrs = document.querySelector("#scsrs");
-const body = document.querySelector("body");
-const div = document.querySelector(".score");
-const para = document.querySelector("p");
-
-/*Plays one round based on user's choice. And displays the scores */
-function gameController(){
-    rockbtn.addEventListener("click", () => {
-        playRound("rock", computerPlay())
-        div.textContent = winner;
-        para.textContent = "Pc's score:" + pcscore + "Player score:" + playerscore;
-        div.append(para);
-    });
-    
-    paperbtn.addEventListener("click", () => {
-        playRound("paper", computerPlay())
-        div.textContent = winner;
-        para.textContent = "Pc's score:" + pcscore + "Player score:" + playerscore;
-        div.append(para);
-    });
-    
-    scsrs.addEventListener("click", () => {
-        playRound("scissors", computerPlay())
-        div.textContent = winner;
-        para.textContent = "Pc's score:" + pcscore + "Player score:" + playerscore;
-        div.append(para);
-    });
+/*To check total rounds and the winner */
+const winnerResults = {
+    computer: ["You Lost the game to a computer!"],
+    player: ["You Win the game!!!!"],
+    tie: ["The game is a Tie!"]
 }
 
-/*Plays 5 rounds and resets the scores. */
-function roundChecker(){
-    if(pcscore != 5 || playerscore != 5){
-    gameController();
-    }
-    else{
-        if(pcscore >= 5){
-            div.textContent = "Pc is the final winner!";
+function checkWinner(){
+    if(playerscore === 5 || pcscore === 5){
+        if(playerscore === pcscore){
+            updateWinner('tie');
         }
         else{
-            div.textContent = "Player is the final winner!";
+            let win = `${(playerscore > pcscore) ? 'player' : 'computer'}`;
+            updateWinner(win);
         }
-        pcscore = 0;
-        playerscore = 0;
-        para.textContent = "Pc's score:" + pcscore + "Player score:" + playerscore;
-        div.append(para);
     }
 };
 
-roundChecker();
+function updateWinner(winner){
+    roundresult.textContent = winnerResults[winner][0];
 
+    rockbtn.removeEventListener("click", rock);
+    paperbtn.removeEventListener("click", paper);
+    scissorsbtn.removeEventListener("click", scissors);
+}

@@ -16,4 +16,4 @@ I learned the following:
 5. How to debug a program.
 6. Using arrow functions. 
 
-Live: https://heimesh.github.io/rpsProject/
+[Live here](https://heimeshc.github.io/rpsProject/)

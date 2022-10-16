@@ -8,6 +8,8 @@ It was divided into two stages:
 
 Programming the logic for resetting the game + mainting a score system with a limit took most of the time as I had difficulty with the same. Changing my approach towards the solution helped me get over that obstacle. 
 
+<hr>
+
 I learned the following:
 1. Manipulating the DOM.
 2. Working with multiple functions.
@@ -16,4 +18,4 @@ I learned the following:
 5. How to debug a program.
 6. Using arrow functions. 
 
-[Live here](https://heimeshc.github.io/rpsProject/)
+Live Here: [Rock-Paper-Scissors](https://heimeshc.github.io/rpsProject/)!
